@@ -5,7 +5,7 @@ date: "2015-9-25"
 output: html_document
 ---
 
-I'll use random forest.but it took too much time...
+ 
 
 
 ```{r}
