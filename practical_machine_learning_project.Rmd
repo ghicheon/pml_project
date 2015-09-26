@@ -1,0 +1,26 @@
+---
+title: "practical machine learning  project"
+author: "Lee"
+date: "2015-9-25"
+output: html_document
+---
+
+I'll use random forest.but it took too much time...
+
+
+```{r}
+library(caret)
+training <- read.csv("pml-training.csv")
+testing <- read.csv("pml-testing.csv")
+
+
+numeric_only <- sapply(training, is.numeric)
+
+#fit <- train( classe ~ . , data=training , method="rf")
+
+#predict(fit, newdata=testing)
+
+```
+
+I'll use random forest.but it took too much time.
+
