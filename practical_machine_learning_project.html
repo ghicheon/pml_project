@@ -67,6 +67,7 @@ img {
 </div>
 
 
+<p>first of all, loading the csv files were needed. after that, we need to find the good features of the data set. In fact, I was struggling from that. when I tried all features, it took too much time and didn’t finish. it might be a problem of my computer performance. In the end,I decided to use numeric features. with numeric features, traing the data set finished whthin reasonable time. I think and hope numeric values are essential. after training the data set, I tested it using predict function. It seems to work!</p>
 <pre class="r"><code>library(caret)</code></pre>
 <pre><code>## Loading required package: lattice
 ## Loading required package: ggplot2</code></pre>
@@ -76,10 +77,28 @@ testing &lt;- read.csv(&quot;pml-testing.csv&quot;)
 
 numeric_only &lt;- sapply(training, is.numeric)
 
-#fit &lt;- train( classe ~ . , data=training , method=&quot;rf&quot;)
+essential &lt;- training[,numeric_only]
 
-#predict(fit, newdata=testing)</code></pre>
-<p>I’ll use random forest.but it took too much time.</p>
+essential$classe &lt;- training$classe
+
+fit &lt;- train(classe ~ . , data= essential ,preProcess=c(&quot;center&quot;,&quot;scale&quot;),method=&quot;rf&quot;, prox=TRUE)</code></pre>
+<pre><code>## Loading required package: randomForest
+## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre class="r"><code>predict(fit, newdata=essential)</code></pre>
+<pre><code>##   [1] A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
+##  [36] A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
+##  [71] A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
+## [106] A A A A B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B
+## [141] B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B B
+## [176] B B B B B B B B B B B B B C C C C C C C C C C C C C C C C C C C C C C
+## [211] C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C C
+## [246] C C C C C C C C C C C C C D D D D D D D D D D D D D D D D D D D D D D
+## [281] D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D
+## [316] D D D D D D D D D D D D E E E E E E E E E E E E E E E E E E E E E E E
+## [351] E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E
+## [386] E E E E E E E E E E E E E E E E E E E E E
+## Levels: A B C D E</code></pre>
 
 
 </div>
