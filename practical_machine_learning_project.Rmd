@@ -9,8 +9,6 @@ output: html_document
  after that, we need to find the good features of the data set.
  In fact, I was struggling from that. when I tried all features, it took too much time and didn't finish. it might be a problem of my computer performance. 
  In the end,I decided to use numeric features. with numeric features, traing the data set finished whthin reasonable time.  I think and hope numeric values are essential.
- after training the data set, I tested it using predict function. It seems to work!
- 
 
 
 ```{r, echo=TRUE}
@@ -27,7 +25,7 @@ essential$classe <- training$classe
 
 fit <- train(classe ~ . , data= essential ,preProcess=c("center","scale"),method="rf", prox=TRUE)
 
-predict(fit, newdata=essential)
+predict(fit, newdata=essential )
 
 ```
 
