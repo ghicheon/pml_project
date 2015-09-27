@@ -6,6 +6,7 @@ output: html_document
 ---
 
  
+ I think numeric variable is essential.
 
 
 ```{r}
@@ -16,9 +17,21 @@ testing <- read.csv("pml-testing.csv")
 
 numeric_only <- sapply(training, is.numeric)
 
-#fit <- train( classe ~ . , data=training , method="rf")
+train_essential <- training[,numeric_only]
 
-#predict(fit, newdata=testing)
+train_essential$classe <- training$classe
+
+fit <- train(classe ~ . , data= train_essential ,preProcess=c("center","scale"),method="rf", prox=TRUE)
+
+
+
+
+numeric_only2 <- sapply(testing, is.numeric)
+test_essential <- testing[,numeric_only2]
+ 
+
+#error.
+predict(fit, newdata=test_essential)
 
 ```
 
